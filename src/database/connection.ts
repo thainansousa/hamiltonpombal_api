@@ -5,9 +5,10 @@ const localURL = 'mongodb://127.0.0.1:27017/hamiltonpombal'
 
 async function databaseConnection(){
     try {
+        mongoose.set('strictQuery',false)
         await mongoose.connect(localURL, {
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
         })
         console.log('Conectado ao banco de dados com sucesso!')
     } catch (error) {

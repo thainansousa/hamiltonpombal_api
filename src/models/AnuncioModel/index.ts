@@ -1,15 +1,19 @@
 import mongoose, { Schema } from "mongoose"
 
 type anuncioModel = {
-    title: string;
+    titulo: string;
     urls: Array<{}>;
-    informations: string;
+    informacoes: string;
+    patrocinado: boolean;
+    ordem_id: number
 }
 
 const anuncioSchema = new Schema<anuncioModel>({
-    title: { type: String, required: true },
-    urls: { urls: Array, required: true },
-    informations: { type: String, required: true }
+    titulo: { type: String, required: true },
+    urls: { type: [], required: true },
+    informacoes: { type: String, required: true },
+    patrocinado: {type: Boolean, default: false},
+    ordem_id: {type: Number, required: true} 
   });
   
 
