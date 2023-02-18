@@ -7,9 +7,11 @@ const Anuncio = require('../../src/models/AnuncioModel')
 class anuncioController {
 
     async novo(req:Request, res: Response) {
-        const {titulo, urls, informacoes, patrocinado, categoria} = req.body
+        const {titulo, informacoes, patrocinado, categoria} = req.body
 
-        try {
+        const urls = req.file?.filename
+
+       try {
             const quantidadeCadastrada = await Anuncio.find()
             const novoAnuncio = await new Anuncio({titulo,urls, informacoes, 
                 patrocinado, ordem_id: quantidadeCadastrada.length + 1, categoria}).save()
@@ -19,6 +21,7 @@ class anuncioController {
             console.log(error)
             res.json({error: true, message: 'Houve um erro ao tentar cadastrar um novo anuncio!'})
         }
+
     }
 
     async buscarTodos(req:Request, res:Response){

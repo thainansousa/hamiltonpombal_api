@@ -7,6 +7,7 @@ type anuncioModel = {
     patrocinado: boolean;
     ordem_id: number;
     categoria: string;
+    createdAt: Date
 }
 
 const anuncioSchema = new Schema<anuncioModel>({
@@ -15,7 +16,11 @@ const anuncioSchema = new Schema<anuncioModel>({
     informacoes: { type: String, required: true },
     patrocinado: {type: Boolean, default: false},
     ordem_id: {type: Number, required: true},
-    categoria: { type: String, required: true }
+    categoria: { type: String, required: true },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
   });
   
 

@@ -1,6 +1,10 @@
 import express from "express";
+import {Request, Response} from 'express'
+const multer = require('multer')
 
 const router = express.Router()
+
+const multerConfig = require('../../src/config/multer')
 
 
 const usuarioController = require('../controllers/usuarioController')
@@ -16,7 +20,7 @@ router.post('/usuario', usuarioController.novo)
 //Rotas Controller Anuncios
 router.get('/anuncio', anuncioController.buscarTodos)
 router.get('/anuncio/:categoria', anuncioController.buscarAnunciosPorCategoria)
-router.post('/anuncio', anuncioController.novo)
+router.post('/anuncio', multer(multerConfig).single('file'), anuncioController.novo)
 
 
 // Rotas Controlller Categorias
